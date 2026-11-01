@@ -1,0 +1,8 @@
+{
+  "name": "Remix UNI-MÁRMOL | Catálogo de Lavamanos en Piedra Natural",
+  "description": "Catálogo digital interactivo y menú de lavamanos artesanales y tallados con tecnología CNC en piedra natural de UNI-MÁRMOL. Sucre - Bolivia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

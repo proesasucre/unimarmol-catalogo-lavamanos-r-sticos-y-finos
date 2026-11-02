@@ -22,10 +22,7 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Cart state
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    // Start with 1 featured item to make the quote flow immediately evident
-    { product: PRODUCTS[0], quantity: 1 },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);

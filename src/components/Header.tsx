@@ -86,14 +86,9 @@ export const Header: React.FC<HeaderProps> = ({
             referrerPolicy="no-referrer"
             className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-md border border-stone-200 shadow-2xs group-hover:scale-105 transition-transform"
           />
-          <div className="flex flex-col">
-            <span className="font-extrabold text-lg sm:text-2xl tracking-tight text-[#1C1C1E] leading-tight">
-              UNI-MÁRMOL
-            </span>
-            <span className="text-[10px] sm:text-xs font-semibold text-[#C8102E] uppercase tracking-wider">
-              {COMPANY_INFO.slogan}
-            </span>
-          </div>
+          <span className="font-extrabold text-lg sm:text-2xl tracking-tight text-[#1C1C1E] leading-tight">
+            UNI-MÁRMOL
+          </span>
         </a>
 
         {/* Desktop Navigation Links */}

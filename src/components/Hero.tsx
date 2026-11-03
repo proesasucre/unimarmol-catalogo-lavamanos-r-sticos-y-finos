@@ -58,13 +58,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog }) => {
 
           {/* Secondary WhatsApp Direct CTA */}
           <a
-            href={`https://wa.me/${COMPANY_INFO.whatsappCleanNumber}?text=${encodeURIComponent('Hola UNI-MÁRMOL, quisiera cotizar lavamanos de piedra para mi proyecto.')}`}
+            href={`https://wa.me/${COMPANY_INFO.whatsappCleanNumber}?text=${encodeURIComponent('Hola UNI-MÁRMOL, quisiera realizar un pedido de lavamanos de piedra para mi proyecto.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white font-bold text-base sm:text-lg transition-all flex items-center justify-center gap-2"
           >
             <MessageCircle className="w-5 h-5 text-emerald-400" />
-            <span>Consultar por WhatsApp</span>
+            <span>Hacer Pedido por WhatsApp</span>
           </a>
         </div>
 

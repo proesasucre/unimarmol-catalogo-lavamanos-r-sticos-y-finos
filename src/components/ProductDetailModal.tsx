@@ -33,9 +33,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   if (!product) return null;
 
   const directWhatsappText = encodeURIComponent(
-    `¡Hola UNI-MÁRMOL! Me interesa consultar por el modelo: *[${product.code}] ${product.name}* (Precio: ${
-      product.isQuoteOnly ? 'Cotizar a medida' : `Bs. ${product.priceBs}`
-    }). ¿Tienen disponibilidad inmediata para envío?`
+    `¡Hola UNI-MÁRMOL! Deseo realizar el pedido de compra del modelo: *[${product.code}] ${product.name}* (Precio: ${
+      product.isQuoteOnly ? 'Fabricación a medida' : `Bs. ${product.priceBs}`
+    }). Por favor indíquenme los pasos para coordinar el pago y envío.`
   );
 
   return (
@@ -117,7 +117,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <div className="mb-4 pb-4 border-b border-stone-200 flex items-baseline gap-2">
                 {product.isQuoteOnly ? (
                   <span className="text-lg font-bold text-stone-900">
-                    Cotización personalizada según medidas del proyecto
+                    Pedido y fabricación a medida según especificaciones del proyecto
                   </span>
                 ) : (
                   <>
@@ -192,12 +192,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   {isInCart ? (
                     <>
                       <Check className="w-4 h-4 stroke-[3]" />
-                      <span>Agregado a Cotización</span>
+                      <span>En mis pedidos</span>
                     </>
                   ) : (
                     <>
                       <Plus className="w-4 h-4 stroke-[2.5]" />
-                      <span>Añadir a mi Cotización</span>
+                      <span>Añadir a mis pedidos</span>
                     </>
                   )}
                 </button>
@@ -209,7 +209,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   className="py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Consultar por WhatsApp</span>
+                  <span>Pedir directo por WhatsApp</span>
                 </a>
               </div>
 

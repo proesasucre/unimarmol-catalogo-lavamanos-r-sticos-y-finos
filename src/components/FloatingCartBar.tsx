@@ -18,7 +18,7 @@ export const FloatingCartBar: React.FC<FloatingCartBarProps> = ({
     <div className="fixed bottom-3 sm:bottom-5 inset-x-3 sm:inset-x-0 z-40 flex justify-center pointer-events-none animate-bounceIn">
       <button
         onClick={onOpenCart}
-        aria-label="Ver cotización de lavamanos y consultar por WhatsApp"
+        aria-label="Ver mis pedidos de compra y finalizar por WhatsApp"
         className="pointer-events-auto w-full max-w-lg bg-[#C8102E] hover:bg-[#a50d26] active:scale-98 text-white px-4 sm:px-6 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-red-950/40 transition-all flex items-center justify-between gap-3 border border-red-500/30 cursor-pointer"
       >
         <div className="flex items-center gap-3.5">
@@ -27,10 +27,10 @@ export const FloatingCartBar: React.FC<FloatingCartBarProps> = ({
           </div>
           <div className="text-left">
             <span className="block font-black text-sm sm:text-base leading-tight tracking-tight">
-              Ver Mi Selección ({totalCount} {totalCount === 1 ? 'modelo' : 'modelos'})
+              Ver Mis Pedidos ({totalCount} {totalCount === 1 ? 'producto' : 'productos'})
             </span>
             <span className="block text-xs text-red-100 font-semibold leading-none mt-1">
-              Consultar por WhatsApp Directo
+              Finalizar Pedido de Compra por WhatsApp
             </span>
           </div>
         </div>

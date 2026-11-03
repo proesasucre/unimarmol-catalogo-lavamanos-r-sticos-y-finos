@@ -34,14 +34,14 @@ export default function App() {
     setCartItems((prev) => {
       const existing = prev.find((item) => item.product.id === product.id);
       if (existing) {
-        showToast(`Se aumentó la cantidad de "${product.name}"`);
+        showToast(`Se aumentó la cantidad de "${product.name}" en tus pedidos`);
         return prev.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
-      showToast(`¡"${product.name}" añadido a tu cotización!`);
+      showToast(`¡"${product.name}" añadido a tus pedidos!`);
       return [...prev, { product, quantity: 1 }];
     });
   };
@@ -60,12 +60,12 @@ export default function App() {
 
   const handleRemoveItem = (productId: string) => {
     setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
-    showToast('Producto eliminado de la cotización');
+    showToast('Producto eliminado de tus pedidos');
   };
 
   const handleClearCart = () => {
     setCartItems([]);
-    showToast('Lista de cotización vaciada');
+    showToast('Lista de pedidos vaciada');
   };
 
 
@@ -365,7 +365,7 @@ export default function App() {
         onAddToCart={handleAddToCart}
       />
 
-      {/* 8. Drawer de Cotización / Selección y Generador WhatsApp */}
+      {/* 8. Drawer de Mis Pedidos de Compra y Generador WhatsApp */}
       <QuoteDrawer
         isOpen={isCartOpen}
         cartItems={cartItems}

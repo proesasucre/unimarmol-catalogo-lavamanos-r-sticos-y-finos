@@ -281,7 +281,7 @@ export const InstalledProjectsGallery: React.FC<InstalledProjectsGalleryProps> =
                     className="py-3 px-4 rounded-xl bg-[#C8102E] hover:bg-[#a50d26] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>Añadir a Cotización</span>
+                    <span>Añadir a mis pedidos</span>
                   </button>
                 </div>
               )}

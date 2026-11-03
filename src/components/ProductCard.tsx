@@ -96,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <span className="text-xs text-stone-500 block uppercase font-semibold">Precio</span>
             {product.isQuoteOnly ? (
               <span className="text-sm sm:text-base font-bold text-stone-900">
-                A Cotizar por Medidas
+                Fabricación a Medida
               </span>
             ) : (
               <div className="flex items-baseline gap-1">
@@ -107,9 +107,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
 
-          {/* Botón "+" o "Añadir a mi Cotización" en Rojo Rubí (#C8102E) */}
+          {/* Botón rojo "Añadir a mis pedidos" */}
           <button
             onClick={() => onAddToCart(product)}
+            aria-label="Añadir a mis pedidos"
             className={`px-4 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 ${
               isInCart
                 ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
@@ -119,12 +120,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {isInCart ? (
               <>
                 <Check className="w-4 h-4 stroke-[3]" />
-                <span className="hidden sm:inline">Añadido</span>
+                <span>En mis pedidos</span>
               </>
             ) : (
               <>
                 <Plus className="w-4 h-4 stroke-[2.5]" />
-                <span>Añadir</span>
+                <span>Añadir a mis pedidos</span>
               </>
             )}
           </button>

@@ -39,19 +39,19 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
 
   const hasQuoteOnlyItems = cartItems.some((item) => item.product.isQuoteOnly);
 
-  // Construct structured WhatsApp message
+  // Construct structured WhatsApp message for Purchase Order
   const buildWhatsAppMessage = () => {
-    let msg = `*SOLICITUD DE COTIZACIÓN — UNI-MÁRMOL*\n`;
+    let msg = `*PEDIDO DE COMPRA DE LAVAMANOS — UNI-MÁRMOL*\n`;
     msg += `--------------------------------------\n`;
     msg += `👤 *Cliente:* ${formData.fullName.trim() || 'No especificado'}\n`;
     if (formData.phone) msg += `📱 *Teléfono:* ${formData.phone.trim()}\n`;
-    msg += `📍 *Ciudad de Envío:* ${formData.city}\n`;
+    msg += `📍 *Ciudad de Entrega / Envío:* ${formData.city}\n`;
     msg += `🏗️ *Tipo de Proyecto:* ${formData.projectType}\n`;
-    msg += `\n📦 *LISTA DE LAVAMANOS SELECCIONADOS:*\n`;
+    msg += `\n📦 *PRODUCTOS DEL PEDIDO:*\n`;
 
     cartItems.forEach((item, index) => {
       const p = item.product;
-      const priceText = p.isQuoteOnly ? 'Cotizar por medidas' : `Bs. ${p.priceBs * item.quantity} (Bs. ${p.priceBs} c/u)`;
+      const priceText = p.isQuoteOnly ? 'Fabricación a medida' : `Bs. ${(p.priceBs * item.quantity).toLocaleString()} (Bs. ${p.priceBs.toLocaleString()} c/u)`;
       msg += `\n${index + 1}. *[${p.code}] ${p.name}*\n`;
       msg += `   • Código: ${p.code}\n`;
       msg += `   • Cantidad: ${item.quantity} unid.\n`;
@@ -61,13 +61,13 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
     });
 
     msg += `\n--------------------------------------\n`;
-    msg += `💰 *Total Estimado:* Bs. ${estimatedTotalBs.toLocaleString()}${hasQuoteOnlyItems ? ' (+ piezas a medida)' : ''}\n`;
+    msg += `💰 *Total del Pedido:* Bs. ${estimatedTotalBs.toLocaleString()}${hasQuoteOnlyItems ? ' (+ piezas a medida)' : ''}\n`;
 
     if (formData.customNotes.trim()) {
-      msg += `\n📝 *Notas / Medidas Especiales:*\n"${formData.customNotes.trim()}"\n`;
+      msg += `\n📝 *Instrucciones / Medidas Especiales:*\n"${formData.customNotes.trim()}"\n`;
     }
 
-    msg += `\n✨ _Hola UNI-MÁRMOL, por favor confírmenme disponibilidad, costo de flete a mi ciudad y tiempo de entrega. ¡Muchas gracias!_`;
+    msg += `\n✨ _Hola UNI-MÁRMOL, deseo confirmar y realizar la compra de estos productos. Por favor facilítenme los métodos de pago (transferencia bancaria/QR) y la fecha de despacho a mi ciudad. ¡Muchas gracias!_`;
 
     return msg;
   };
@@ -108,17 +108,17 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-bold">
-                Mi Selección de Lavamanos
+                Mis Pedidos de Compra
               </h2>
               <span className="text-xs text-stone-300">
-                {totalItemsCount} {totalItemsCount === 1 ? 'modelo' : 'modelos'} en tu cotización
+                {totalItemsCount} {totalItemsCount === 1 ? 'producto' : 'productos'} en tu orden de compra
               </span>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            aria-label="Cerrar selección"
+            aria-label="Cerrar mis pedidos"
             className="p-2 text-stone-400 hover:text-white rounded-lg hover:bg-stone-800 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -135,10 +135,10 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                 <ShoppingBag className="w-8 h-8" />
               </div>
               <h3 className="text-lg font-bold text-stone-800">
-                Aún no has agregado lavamanos
+                Aún no has agregado productos a tus pedidos
               </h3>
               <p className="text-sm text-stone-500 max-w-xs mt-1 mb-6">
-                Explora las 6 categorías de piedra natural y agrega los modelos que te gusten para cotizar por WhatsApp.
+                Explora el catálogo de lavamanos tallados en piedra natural y añade los modelos que deseas comprar.
               </p>
               <button
                 onClick={() => {
@@ -155,12 +155,12 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
               {/* List of Cart Items */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs text-stone-500 pb-1 border-b border-stone-200">
-                  <span className="font-semibold uppercase tracking-wider">Modelos Seleccionados</span>
+                  <span className="font-semibold uppercase tracking-wider">Productos en tu Pedido</span>
                   <button
                     onClick={onClearCart}
-                    className="text-stone-400 hover:text-red-600 transition-colors"
+                    className="text-stone-400 hover:text-red-600 transition-colors cursor-pointer"
                   >
-                    Vaciar lista
+                    Vaciar pedidos
                   </button>
                 </div>
 
@@ -244,15 +244,15 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                 ))}
               </div>
 
-              {/* Form for WhatsApp Order / Cotización */}
+              {/* Form for WhatsApp Purchase Order */}
               <form onSubmit={handleSendWhatsApp} className="pt-2 border-t border-stone-200 space-y-4">
                 <div className="bg-stone-100/70 p-3.5 rounded-xl border border-stone-200">
                   <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-[#C8102E]" />
-                    Datos para tu Cotización y Flete
+                    Datos para Facturación, Envío y Confirmación de Pedido
                   </h4>
                   <p className="text-[11px] text-stone-500 mb-3">
-                    Personaliza el mensaje que se enviará directamente a nuestro WhatsApp oficial (+591 72876260).
+                    Ingresa tus datos para procesar tu pedido de compra directamente por nuestro WhatsApp oficial (+591 72876260).
                   </p>
 
                   <div className="space-y-3.5">
@@ -348,7 +348,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                 {/* Subtotal summary */}
                 <div className="bg-stone-50 p-4 rounded-xl border border-stone-200">
                   <div className="flex items-center justify-between text-xs text-stone-600 mb-1">
-                    <span>Modelos seleccionados:</span>
+                    <span>Productos seleccionados:</span>
                     <span className="font-semibold text-stone-900">{totalItemsCount} unid.</span>
                   </div>
                   <div className="flex items-center justify-between text-xs text-stone-600 mb-2">
@@ -357,9 +357,9 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                   </div>
                   <div className="pt-2 border-t border-stone-200 flex items-baseline justify-between">
                     <div>
-                      <span className="text-xs font-bold text-stone-900 block">Total Estimado en Fábrica:</span>
+                      <span className="text-xs font-bold text-stone-900 block">Total del Pedido (Fábrica Sucre):</span>
                       <span className="text-[10px] text-stone-500">
-                        {formData.city.includes('Sucre') ? 'Entrega en Sucre' : 'Flete por transporte se coordina por WhatsApp'}
+                        {formData.city.includes('Sucre') ? 'Entrega en Sucre' : 'Despacho y flete coordinados por WhatsApp'}
                       </span>
                     </div>
                     <div className="text-right">
@@ -377,7 +377,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                     className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    <span>Enviar Cotización a WhatsApp (+591 72876260)</span>
+                    <span>Realizar Pedido de Compra por WhatsApp (+591 72876260)</span>
                   </button>
 
                   <div className="flex items-center gap-2">

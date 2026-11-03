@@ -45,6 +45,6 @@ export interface QuoteForm {
   fullName: string;
   phone: string;
   city: string;
-  projectType: 'Hogar Particular' | 'Obra / Construcción' | 'Arquitectura / Diseño Interior' | 'Comercio / Hotel';
+  address: string;
   customNotes: string;
 }

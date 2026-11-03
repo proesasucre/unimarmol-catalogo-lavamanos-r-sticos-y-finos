@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, MessageCircle, Send, Copy, Check, ShoppingBag, Sparkles, MapPin, Building2, User, Phone } from 'lucide-react';
+import { X, Trash2, Plus, Minus, MessageCircle, Send, Copy, Check, ShoppingBag, Sparkles, MapPin, User, Phone } from 'lucide-react';
 import { CartItem, QuoteForm } from '../types/catalog';
 import { BOLIVIAN_CITIES, COMPANY_INFO } from '../data/catalogData';
 
@@ -27,7 +27,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
     fullName: '',
     phone: '',
     city: 'Sucre (Retiro en tienda o entrega local)',
-    projectType: 'Hogar Particular',
+    address: '',
     customNotes: '',
   });
 
@@ -46,7 +46,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
     msg += `👤 *Cliente:* ${formData.fullName.trim() || 'No especificado'}\n`;
     if (formData.phone) msg += `📱 *Teléfono:* ${formData.phone.trim()}\n`;
     msg += `📍 *Ciudad de Entrega / Envío:* ${formData.city}\n`;
-    msg += `🏗️ *Tipo de Proyecto:* ${formData.projectType}\n`;
+    if (formData.address.trim()) msg += `🏠 *Dirección:* ${formData.address.trim()}\n`;
     msg += `\n📦 *PRODUCTOS DEL PEDIDO:*\n`;
 
     cartItems.forEach((item, index) => {
@@ -306,27 +306,19 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                       </select>
                     </div>
 
-                    {/* Tipo de Proyecto */}
+                    {/* Dirección */}
                     <div>
-                      <label className="block text-xs font-semibold text-stone-700 mb-1 flex items-center gap-1">
-                        <Building2 className="w-3 h-3 text-stone-400" />
-                        Tipo de Proyecto:
+                      <label className="block text-xs sm:text-sm font-bold text-stone-800 mb-1 flex items-center gap-1.5">
+                        <MapPin className="w-4 h-4 text-stone-400" />
+                        Dirección:
                       </label>
-                      <select
-                        value={formData.projectType}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            projectType: e.target.value as QuoteForm['projectType'],
-                          })
-                        }
-                        className="w-full text-xs p-2.5 rounded-lg border border-stone-300 bg-white focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E]"
-                      >
-                        <option value="Hogar Particular">Hogar Particular / Remodelación de Baño</option>
-                        <option value="Obra / Construcción">Obra en Construcción / Edificio</option>
-                        <option value="Arquitectura / Diseño Interior">Estudio de Arquitectura / Diseño Interior</option>
-                        <option value="Comercio / Hotel">Hotel / Restaurante / Comercio</option>
-                      </select>
+                      <input
+                        type="text"
+                        placeholder="Ej: Av. Hernando Siles #450, Barrio Petrolero / Calle Junín"
+                        value={formData.address}
+                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        className="w-full text-sm p-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E]"
+                      />
                     </div>
 
                     {/* Notas adicionales */}

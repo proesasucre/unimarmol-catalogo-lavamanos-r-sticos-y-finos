@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, ArrowRight } from 'lucide-react';
+import { ShoppingCart, ArrowRight } from 'lucide-react';
 
 interface FloatingCartBarProps {
   totalCount: number;
@@ -23,7 +23,7 @@ export const FloatingCartBar: React.FC<FloatingCartBarProps> = ({
       >
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-white text-[#C8102E] rounded-xl font-black text-sm flex items-center justify-center shadow-xs">
-            <ShoppingBag className="w-5 h-5" />
+            <ShoppingCart className="w-5 h-5" />
           </div>
           <div className="text-left">
             <span className="block font-black text-sm sm:text-base leading-tight tracking-tight">

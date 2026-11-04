@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ChevronLeft, ChevronRight, MapPin, ZoomIn, Eye, Sparkles, CheckCircle2, ShoppingBag } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, ZoomIn, Eye, Sparkles, CheckCircle2, ShoppingCart } from 'lucide-react';
 import { Product } from '../types/catalog';
 import { PRODUCTS } from '../data/catalogData';
 
@@ -280,7 +280,7 @@ export const InstalledProjectsGallery: React.FC<InstalledProjectsGalleryProps> =
                     onClick={() => onAddToCart(matchedProduct)}
                     className="py-3 px-4 rounded-xl bg-[#C8102E] hover:bg-[#a50d26] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
                   >
-                    <ShoppingBag className="w-4 h-4" />
+                    <ShoppingCart className="w-4 h-4" />
                     <span>Añadir a mis pedidos</span>
                   </button>
                 </div>

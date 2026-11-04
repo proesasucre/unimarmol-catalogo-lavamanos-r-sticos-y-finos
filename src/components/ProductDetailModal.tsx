@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Check, Plus, MessageCircle, Shield, Ruler, Sparkles, Truck, Droplets } from 'lucide-react';
+import { X, Check, ShoppingCart, MessageCircle, Shield, Ruler, Sparkles, Truck, Droplets } from 'lucide-react';
 import { Product } from '../types/catalog';
 import { COMPANY_INFO } from '../data/catalogData';
 
@@ -196,7 +196,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     </>
                   ) : (
                     <>
-                      <Plus className="w-4 h-4 stroke-[2.5]" />
+                      <ShoppingCart className="w-4 h-4" />
                       <span>Añadir a mis pedidos</span>
                     </>
                   )}

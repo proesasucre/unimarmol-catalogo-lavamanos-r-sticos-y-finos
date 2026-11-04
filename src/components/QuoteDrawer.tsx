@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, MessageCircle, Send, Copy, Check, ShoppingBag, Sparkles, MapPin, User, Phone } from 'lucide-react';
+import { X, Trash2, Plus, Minus, MessageCircle, Send, Copy, Check, ShoppingCart, Sparkles, MapPin, User, Phone } from 'lucide-react';
 import { CartItem, QuoteForm } from '../types/catalog';
 import { BOLIVIAN_CITIES, COMPANY_INFO } from '../data/catalogData';
 
@@ -104,7 +104,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
         <div className="p-4 sm:p-5 bg-[#1C1C1E] text-white flex items-center justify-between border-b border-stone-800">
           <div className="flex items-center gap-2.5">
             <div className="p-2 bg-[#C8102E] text-white rounded-lg">
-              <ShoppingBag className="w-5 h-5" />
+              <ShoppingCart className="w-5 h-5" />
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-bold">
@@ -132,7 +132,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
           {cartItems.length === 0 ? (
             <div className="py-12 text-center flex flex-col items-center">
               <div className="w-16 h-16 rounded-2xl bg-stone-100 flex items-center justify-center text-stone-400 mb-4">
-                <ShoppingBag className="w-8 h-8" />
+                <ShoppingCart className="w-8 h-8" />
               </div>
               <h3 className="text-lg font-bold text-stone-800">
                 Aún no has agregado productos a tus pedidos

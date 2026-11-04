@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, MessageCircle, ShoppingBag, Menu, X, ShieldCheck, Truck } from 'lucide-react';
+import { MapPin, Phone, MessageCircle, ShoppingCart, Menu, X, ShieldCheck, Truck } from 'lucide-react';
 import { COMPANY_INFO, IMAGES } from '../data/catalogData';
 
 interface HeaderProps {
@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
             aria-label="Ver mis pedidos de compra"
             className="relative flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl bg-[#C8102E] hover:bg-[#a50d26] active:scale-95 text-white font-bold text-sm sm:text-base shadow-sm transition-all cursor-pointer"
           >
-            <ShoppingBag className="w-5 h-5" />
+            <ShoppingCart className="w-5 h-5" />
             <span className="hidden sm:inline">Mis Pedidos</span>
             <span className="bg-white text-[#C8102E] text-xs sm:text-sm font-extrabold px-2 py-0.5 rounded-full min-w-6 text-center shadow-2xs">
               {cartCount}
@@ -164,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => handleNavClick('catalogo')}
             className="w-full text-left py-2.5 px-3 rounded-xl hover:bg-stone-100 font-bold text-stone-900 text-sm flex items-center justify-between"
           >
-            <span>📋 Catálogo General (22 Modelos)</span>
+            <span>📋 Catálogo General (33 Modelos)</span>
             <span className="text-xs text-[#C8102E] font-extrabold">Ver Todo</span>
           </button>
           <button

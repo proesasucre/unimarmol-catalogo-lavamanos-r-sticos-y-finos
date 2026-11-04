@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Check, Eye, Ruler, Layers, Cpu } from 'lucide-react';
+import { ShoppingCart, Check, Eye, Ruler, Layers, Cpu } from 'lucide-react';
 import { Product } from '../types/catalog';
 
 interface ProductCardProps {
@@ -124,7 +124,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               </>
             ) : (
               <>
-                <Plus className="w-4 h-4 stroke-[2.5]" />
+                <ShoppingCart className="w-4 h-4" />
                 <span>Añadir a mis pedidos</span>
               </>
             )}

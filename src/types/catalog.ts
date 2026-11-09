@@ -1,7 +1,9 @@
 export type CategoryId = 
   | 'rusticos'
   | 'acabado-fino'
+  | 'granito'
   | 'porcelanato'
+  | 'porcelana'
   | 'proyectos';
 
 export interface Category {

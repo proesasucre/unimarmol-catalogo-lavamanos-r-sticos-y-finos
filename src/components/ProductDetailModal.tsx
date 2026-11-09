@@ -65,11 +65,26 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   src={product.image}
                   alt={product.name}
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('1017.png')) {
+                      target.src = '/1017.png';
+                    }
+                  }}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-3 left-3 bg-[#1C1C1E]/95 backdrop-blur-md text-white text-xs font-black px-3 py-1.5 rounded-lg border border-white/20 uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                  <span className="w-2 h-2 rounded-full bg-[#C8102E]"></span>
-                  <span>{product.code || product.badge}</span>
+                <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                  <div className="bg-[#1C1C1E]/95 backdrop-blur-md text-white text-xs font-black px-3 py-1.5 rounded-lg border border-white/20 uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                    <span className="w-2 h-2 rounded-full bg-[#C8102E]"></span>
+                    <span>{product.code || product.badge}</span>
+                  </div>
+
+                  {!product.inStock && (
+                    <div className="bg-amber-500 text-stone-950 text-xs font-black px-3 py-1.5 rounded-lg tracking-wider uppercase shadow-lg border border-amber-300 flex items-center gap-1.5 animate-pulse">
+                      <span className="w-2 h-2 rounded-full bg-stone-950"></span>
+                      <span>No disponible</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -179,28 +194,49 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 ))}
               </ul>
 
+              {/* Rótulo de alerta cuando no está disponible */}
+              {!product.inStock && (
+                <div className="mb-4 p-3.5 bg-amber-50 border border-amber-300 rounded-xl text-xs text-amber-950 flex items-start gap-2.5 shadow-xs">
+                  <span className="text-base shrink-0">⚠️</span>
+                  <div>
+                    <span className="font-extrabold uppercase tracking-wide block text-amber-900">Rótulo: No disponible</span>
+                    <span className="text-amber-800">Esta pieza exclusiva no se encuentra disponible actualmente en stock. Puedes escribirnos por WhatsApp para consultar la próxima fecha de extracción o encargar una pieza a medida.</span>
+                  </div>
+                </div>
+              )}
+
               {/* CTAs */}
               <div className="mt-auto pt-4 border-t border-stone-200 flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={() => onAddToCart(product)}
-                  className={`flex-1 py-3 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95 ${
-                    isInCart
-                      ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                      : 'bg-[#C8102E] hover:bg-[#a50d26] text-white'
-                  }`}
-                >
-                  {isInCart ? (
-                    <>
-                      <Check className="w-4 h-4 stroke-[3]" />
-                      <span>En mis pedidos</span>
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingCart className="w-4 h-4" />
-                      <span>Añadir a mis pedidos</span>
-                    </>
-                  )}
-                </button>
+                {product.inStock === false ? (
+                  <button
+                    disabled
+                    className="flex-1 py-3 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 bg-stone-200 text-stone-500 cursor-not-allowed border border-stone-300"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                    <span>No disponible para pedido</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => onAddToCart(product)}
+                    className={`flex-1 py-3 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95 ${
+                      isInCart
+                        ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                        : 'bg-[#C8102E] hover:bg-[#a50d26] text-white'
+                    }`}
+                  >
+                    {isInCart ? (
+                      <>
+                        <Check className="w-4 h-4 stroke-[3]" />
+                        <span>En mis pedidos</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingCart className="w-4 h-4" />
+                        <span>Añadir a mis pedidos</span>
+                      </>
+                    )}
+                  </button>
+                )}
 
                 <a
                   href={`https://wa.me/${COMPANY_INFO.whatsappCleanNumber}?text=${directWhatsappText}`}
@@ -209,7 +245,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   className="py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Pedir directo por WhatsApp</span>
+                  <span>{product.inStock === false ? 'Consultar en WhatsApp' : 'Pedir directo por WhatsApp'}</span>
                 </a>
               </div>
 

@@ -174,6 +174,12 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                       src={item.product.image}
                       alt={item.product.name}
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.src.includes('1017.png')) {
+                          target.src = '/1017.png';
+                        }
+                      }}
                       className="w-16 h-16 rounded-lg object-cover bg-stone-200 shrink-0 border border-stone-200"
                     />
 

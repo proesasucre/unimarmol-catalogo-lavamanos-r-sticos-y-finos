@@ -26,13 +26,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           src={product.image}
           alt={product.name}
           referrerPolicy="no-referrer"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.src.includes('1017.png')) {
+              target.src = '/1017.png';
+            }
+          }}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
 
-        {/* Badge de Inventario / Código de Producto */}
-        <div className="absolute top-3.5 left-3.5 bg-[#1C1C1E]/95 backdrop-blur-md text-white text-xs font-black px-3 py-1.5 rounded-lg tracking-wider uppercase shadow-md border border-white/20 flex items-center gap-1.5 z-10">
-          <span className="w-2 h-2 rounded-full bg-[#C8102E]"></span>
-          <span>{product.code || product.badge}</span>
+        {/* Badge de Inventario / Código de Producto y Rótulo de Disponibilidad */}
+        <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none z-10">
+          <div className="bg-[#1C1C1E]/95 backdrop-blur-md text-white text-xs font-black px-3 py-1.5 rounded-lg tracking-wider uppercase shadow-md border border-white/20 flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#C8102E]"></span>
+            <span>{product.code || product.badge}</span>
+          </div>
+
+          {!product.inStock && (
+            <div className="bg-amber-500 text-stone-950 text-xs font-black px-3 py-1.5 rounded-lg tracking-wider uppercase shadow-lg border border-amber-300 flex items-center gap-1.5 animate-pulse">
+              <span className="w-2 h-2 rounded-full bg-stone-950"></span>
+              <span>No disponible</span>
+            </div>
+          )}
         </div>
 
         {/* Enunciado 'Ver Ficha Técnica' en la parte inferior de la foto de referencia */}
@@ -107,28 +122,39 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
 
-          {/* Botón rojo "Añadir a mis pedidos" */}
-          <button
-            onClick={() => onAddToCart(product)}
-            aria-label="Añadir a mis pedidos"
-            className={`px-4 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 ${
-              isInCart
-                ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                : 'bg-[#C8102E] hover:bg-[#a50d26] text-white'
-            }`}
-          >
-            {isInCart ? (
-              <>
-                <Check className="w-4 h-4 stroke-[3]" />
-                <span>En mis pedidos</span>
-              </>
-            ) : (
-              <>
-                <ShoppingCart className="w-4 h-4" />
-                <span>Añadir a mis pedidos</span>
-              </>
-            )}
-          </button>
+          {/* Botón rojo "Añadir a mis pedidos" o "No disponible" */}
+          {product.inStock === false ? (
+            <button
+              disabled
+              aria-label="Producto no disponible"
+              className="px-4 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-stone-200 text-stone-500 cursor-not-allowed shrink-0 border border-stone-300"
+            >
+              <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+              <span>No disponible</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => onAddToCart(product)}
+              aria-label="Añadir a mis pedidos"
+              className={`px-4 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 ${
+                isInCart
+                  ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                  : 'bg-[#C8102E] hover:bg-[#a50d26] text-white'
+              }`}
+            >
+              {isInCart ? (
+                <>
+                  <Check className="w-4 h-4 stroke-[3]" />
+                  <span>En mis pedidos</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="w-4 h-4" />
+                  <span>Añadir a mis pedidos</span>
+                </>
+              )}
+            </button>
+          )}
         </div>
       </div>
     </div>

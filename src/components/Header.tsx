@@ -164,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => handleNavClick('catalogo')}
             className="w-full text-left py-2.5 px-3 rounded-xl hover:bg-stone-100 font-bold text-stone-900 text-sm flex items-center justify-between"
           >
-            <span>📋 Catálogo General (33 Modelos)</span>
+            <span>📋 Catálogo General</span>
             <span className="text-xs text-[#C8102E] font-extrabold">Ver Todo</span>
           </button>
           <button

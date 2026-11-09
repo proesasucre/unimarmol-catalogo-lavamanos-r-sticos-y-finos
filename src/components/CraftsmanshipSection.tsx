@@ -97,7 +97,7 @@ export const CraftsmanshipSection: React.FC = () => {
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#DC143C] shrink-0" />
-                <span>Garantía de reposición ante siniestros</span>
+                <span>Embalaje estructural para transporte seguro</span>
               </li>
             </ul>
           </div>

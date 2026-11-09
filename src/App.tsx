@@ -16,7 +16,6 @@ import { CategoryId, Product, CartItem } from './types/catalog';
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<CategoryId>('rusticos');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedStoneType, setSelectedStoneType] = useState<string>('all');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProductForDetail, setSelectedProductForDetail] = useState<Product | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -84,29 +83,21 @@ export default function App() {
         return false;
       }
 
-      // Stone type filter
-      if (selectedStoneType !== 'all') {
-        const stoneLower = product.stoneType.toLowerCase();
-        if (selectedStoneType === 'travertino' && !stoneLower.includes('travertino')) return false;
-        if (selectedStoneType === 'rio' && !stoneLower.includes('río') && !stoneLower.includes('rodado')) return false;
-        if (selectedStoneType === 'granito' && !stoneLower.includes('granito')) return false;
-        if (selectedStoneType === 'marmol' && !stoneLower.includes('mármol')) return false;
-      }
-
       // Search query
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase().trim();
+        const matchesCode = product.code.toLowerCase().includes(q);
         const matchesName = product.name.toLowerCase().includes(q);
         const matchesCategory = product.categoryName.toLowerCase().includes(q);
         const matchesStone = product.stoneType.toLowerCase().includes(q);
         const matchesDesc = product.description.toLowerCase().includes(q);
         const matchesTech = product.cuttingTech.toLowerCase().includes(q);
-        return matchesName || matchesCategory || matchesStone || matchesDesc || matchesTech;
+        return matchesCode || matchesName || matchesCategory || matchesStone || matchesDesc || matchesTech;
       }
 
       return true;
     });
-  }, [activeCategory, selectedStoneType, searchQuery]);
+  }, [activeCategory, searchQuery]);
 
   const totalItemsCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const totalBs = cartItems.reduce(
@@ -151,18 +142,18 @@ export default function App() {
               Lavamanos Rústicos y Finos
             </h2>
             <p className="text-sm sm:text-base text-stone-600 mt-1.5">
-              Mostrando <span className="font-bold text-[#1C1C1E]">{filteredProducts.length}</span> de {PRODUCTS.length} piezas talladas con maquinaria CNC disponibles en Sucre
+              Mostrando <span className="font-bold text-[#1C1C1E]">{filteredProducts.length}</span> de {PRODUCTS.length} piezas talladas con maquinaria CNC
             </p>
           </div>
 
           {/* Search Input & Material Filter Controls */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            {/* Search Input */}
-            <div className="relative min-w-[280px]">
+          {/* Search Input */}
+          <div className="w-full sm:w-80 md:w-96">
+            <div className="relative w-full">
               <Search className="w-5 h-5 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
-                placeholder="Buscar modelo, piedra, acabado..."
+                placeholder="Buscar por código (ej: 1001, 3001, 4001, 5001)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full text-sm pl-11 pr-4 py-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E] shadow-2xs transition-all"
@@ -176,64 +167,10 @@ export default function App() {
                 </button>
               )}
             </div>
-
-            {/* Material Filter */}
-            <div className="flex items-center gap-1.5 p-1 bg-stone-200/70 rounded-xl overflow-x-auto text-xs sm:text-sm font-medium">
-              <button
-                onClick={() => setSelectedStoneType('all')}
-                className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
-                  selectedStoneType === 'all'
-                    ? 'bg-white text-stone-900 shadow-2xs font-bold'
-                    : 'text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                Todas las Piedras
-              </button>
-              <button
-                onClick={() => setSelectedStoneType('travertino')}
-                className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
-                  selectedStoneType === 'travertino'
-                    ? 'bg-white text-stone-900 shadow-2xs font-bold'
-                    : 'text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                Travertino
-              </button>
-              <button
-                onClick={() => setSelectedStoneType('rio')}
-                className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
-                  selectedStoneType === 'rio'
-                    ? 'bg-white text-stone-900 shadow-2xs font-bold'
-                    : 'text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                Piedra de Río
-              </button>
-              <button
-                onClick={() => setSelectedStoneType('marmol')}
-                className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
-                  selectedStoneType === 'marmol'
-                    ? 'bg-white text-stone-900 shadow-2xs font-bold'
-                    : 'text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                Mármol
-              </button>
-              <button
-                onClick={() => setSelectedStoneType('granito')}
-                className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
-                  selectedStoneType === 'granito'
-                    ? 'bg-white text-stone-900 shadow-2xs font-bold'
-                    : 'text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                Granito
-              </button>
-            </div>
           </div>
         </div>
 
-        {/* 4 Pestañas Principales Solicitadas */}
+        {/* Pestañas de Categorías del Catálogo */}
         <div className="mt-5 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm">
           {CATEGORIES.map((cat) => {
             const isSelected = activeCategory === cat.id;
@@ -261,18 +198,13 @@ export default function App() {
         </div>
 
         {/* Active Filters Summary if filtered */}
-        {(activeCategory || selectedStoneType !== 'all' || searchQuery) && (
+        {(searchQuery || (activeCategory && activeCategory !== 'rusticos')) && (
           <div className="mt-4 flex items-center justify-between bg-stone-100 p-2.5 rounded-xl text-xs text-stone-600">
             <div className="flex items-center gap-2 truncate">
-              <span className="font-semibold text-stone-800">Filtros activos:</span>
+              <span className="font-semibold text-stone-800">Filtro activo:</span>
               {activeCategory && (
                 <span className="bg-white px-2 py-0.5 rounded border border-stone-200">
                   {CATEGORIES.find((c) => c.id === activeCategory)?.name}
-                </span>
-              )}
-              {selectedStoneType !== 'all' && (
-                <span className="bg-white px-2 py-0.5 rounded border border-stone-200 capitalize">
-                  Piedra: {selectedStoneType}
                 </span>
               )}
               {searchQuery && (
@@ -285,13 +217,12 @@ export default function App() {
             <button
               onClick={() => {
                 setActiveCategory('rusticos');
-                setSelectedStoneType('all');
                 setSearchQuery('');
               }}
               className="flex items-center gap-1 text-[#C8102E] hover:underline font-semibold shrink-0 cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Limpiar filtros</span>
+              <span>Restablecer</span>
             </button>
           </div>
         )}
@@ -311,7 +242,6 @@ export default function App() {
             <button
               onClick={() => {
                 setActiveCategory('rusticos');
-                setSelectedStoneType('all');
                 setSearchQuery('');
               }}
               className="px-5 py-2.5 rounded-xl bg-[#C8102E] text-white font-semibold text-sm hover:bg-[#a50d26]"

@@ -170,8 +170,8 @@ export default function App() {
           </div>
         </div>
 
-        {/* Pestañas de Categorías del Catálogo: 2 columnas de 3 botones en celular con solo el título visible */}
-        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5">
+        {/* Pestañas de Categorías del Catálogo: 2 columnas en celular y 5 en escritorio */}
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-2.5">
           {CATEGORIES.map((cat) => {
             const isSelected = activeCategory === cat.id;
 

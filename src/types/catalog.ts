@@ -3,8 +3,7 @@ export type CategoryId =
   | 'acabado-fino'
   | 'granito'
   | 'porcelanato'
-  | 'porcelana'
-  | 'proyectos';
+  | 'porcelana';
 
 export interface Category {
   id: CategoryId;

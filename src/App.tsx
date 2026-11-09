@@ -170,8 +170,8 @@ export default function App() {
           </div>
         </div>
 
-        {/* Pestañas de Categorías del Catálogo */}
-        <div className="mt-5 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm">
+        {/* Pestañas de Categorías del Catálogo: 2 columnas de 3 botones en celular con solo el título visible */}
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5">
           {CATEGORIES.map((cat) => {
             const isSelected = activeCategory === cat.id;
 
@@ -179,19 +179,13 @@ export default function App() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 sm:px-5 py-2.5 rounded-xl transition-all whitespace-nowrap shrink-0 border cursor-pointer flex items-center gap-2 font-bold ${
+                className={`w-full px-2.5 sm:px-3 py-3 rounded-xl transition-all border cursor-pointer flex items-center justify-center text-center text-xs sm:text-sm font-bold shadow-2xs active:scale-98 leading-tight min-h-[48px] ${
                   isSelected
                     ? 'bg-[#C8102E] text-white border-[#C8102E] shadow-sm ring-2 ring-[#C8102E]/25'
                     : 'bg-white text-stone-700 border-stone-200 hover:border-stone-400 hover:bg-stone-50'
                 }`}
               >
-                <span>{cat.icon}</span>
                 <span>{cat.name}</span>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-extrabold ${
-                  isSelected ? 'bg-white/25 text-white' : 'bg-stone-100 text-stone-600'
-                }`}>
-                  {cat.itemCount}
-                </span>
               </button>
             );
           })}

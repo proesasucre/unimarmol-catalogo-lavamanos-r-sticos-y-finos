@@ -39,8 +39,8 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Envíos a todo el país badge */}
           <div className="hidden md:flex items-center gap-2 text-stone-300">
-            <span className="inline-flex items-center gap-1 font-semibold text-white">
-              <span>🇧🇴</span> Envíos a todo el país
+            <span className="inline-flex items-center gap-1.5 font-semibold text-white">
+              <Truck className="w-4 h-4 text-[#C8102E]" /> Envíos a todo el país
             </span>
             <span className="text-stone-500">|</span>
             <span className="text-stone-300 font-medium">Garantizados y Elegantes</span>
@@ -184,7 +184,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => handleNavClick('envios-garantizados')}
             className="w-full text-left py-2 px-3 rounded-md hover:bg-stone-100 font-medium text-stone-800 text-sm"
           >
-            🇧🇴 Garantía de Envíos en Bolivia
+            🚚 Envíos a todo el país
           </button>
           <button
             onClick={() => handleNavClick('contacto')}

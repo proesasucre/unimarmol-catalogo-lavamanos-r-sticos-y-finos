@@ -288,7 +288,7 @@ export const InstalledProjectsGallery: React.FC<InstalledProjectsGalleryProps> =
 
               {/* Department delivery reminder */}
               <p className="text-[11px] text-stone-500 text-center">
-                🇧🇴 Envíos embalados en cajas de madera hacia {activeProject.city} y toda Bolivia.
+                🚚 Envíos embalados en cajas de madera hacia {activeProject.city} y toda Bolivia.
               </p>
             </div>
 

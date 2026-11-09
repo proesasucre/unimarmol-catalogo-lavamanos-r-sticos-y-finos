@@ -64,7 +64,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
     msg += `💰 *Total del Pedido:* Bs. ${estimatedTotalBs.toLocaleString()}${hasQuoteOnlyItems ? ' (+ piezas a medida)' : ''}\n`;
 
     if (formData.customNotes.trim()) {
-      msg += `\n📝 *Instrucciones / Medidas Especiales:*\n"${formData.customNotes.trim()}"\n`;
+      msg += `\n📝 *Comentarios Adicionales:*\n"${formData.customNotes.trim()}"\n`;
     }
 
     msg += `\n✨ _Hola UNI-MÁRMOL, deseo confirmar y realizar la compra de estos productos. Por favor facilítenme los métodos de pago (transferencia bancaria/QR) y la fecha de despacho a mi ciudad. ¡Muchas gracias!_`;
@@ -255,7 +255,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                 <div className="bg-stone-100/70 p-3.5 rounded-xl border border-stone-200">
                   <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-[#C8102E]" />
-                    Datos para Facturación, Envío y Confirmación de Pedido
+                    Datos para envío y confirmación de pedido
                   </h4>
                   <p className="text-[11px] text-stone-500 mb-3">
                     Ingresa tus datos para procesar tu pedido de compra directamente por nuestro WhatsApp oficial (+591 72876260).
@@ -330,11 +330,11 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                     {/* Notas adicionales */}
                     <div>
                       <label className="block text-xs font-semibold text-stone-700 mb-1">
-                        Medidas personalizadas, grifería o comentarios:
+                        Comentarios adicionales:
                       </label>
                       <textarea
                         rows={2}
-                        placeholder="Ej: Requiero perforación para grifería monomando alta y envío a obra antes del viernes..."
+                        placeholder="Ej: Indicaciones para la entrega, preferencias de grifería o detalles del pedido..."
                         value={formData.customNotes}
                         onChange={(e) => setFormData({ ...formData, customNotes: e.target.value })}
                         className="w-full text-xs p-2.5 rounded-lg border border-stone-300 bg-white focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E]"

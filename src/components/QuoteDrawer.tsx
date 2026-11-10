@@ -258,7 +258,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                     Datos para envío y confirmación de pedido
                   </h4>
                   <p className="text-[11px] text-stone-500 mb-3">
-                    Ingresa tus datos para procesar tu pedido de compra directamente por nuestro WhatsApp oficial (+591 72876260).
+                    Ingresa tus datos para procesar tu pedido de compra directamente por nuestro WhatsApp oficial (+591 63747328).
                   </p>
 
                   <div className="space-y-3.5">
@@ -375,7 +375,7 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
                     className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    <span>Realizar Pedido de Compra por WhatsApp (+591 72876260)</span>
+                    <span>Realizar Pedido de Compra por WhatsApp (+591 63747328)</span>
                   </button>
 
                   <div className="flex items-center gap-2">

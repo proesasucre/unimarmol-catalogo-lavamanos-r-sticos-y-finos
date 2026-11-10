@@ -1459,9 +1459,10 @@ export const COMPANY_INFO = {
   slogan: 'Calidad y Elegancia en su Construcción',
   usp: 'Los originales y primeros en Bolivia en el arte de esculpir piedra en lavamanos. Piezas exclusivas talladas con maquinaria CNC de última generación. Creamos la pieza central para tu hogar.',
   address: 'Av. Ostria Gutiérrez #38, Sucre - Bolivia',
-  phoneDirect: '63747328',
-  whatsappNumber: '+59172876260',
-  whatsappCleanNumber: '59172876260',
+  phoneDirect: '+59163747328',
+  phoneDisplay: '+591 63747328',
+  whatsappNumber: '+59163747328',
+  whatsappCleanNumber: '59163747328',
   shippingInfo: 'Envíos garantizados a todo el país (Bolivia) en cajón de madera reforzado',
   facebookQuote: 'LAVAMANOS TALLADOS EN PIEDRA 🎊🎊 Los originales y primeros en Bolivia en el arte de esculpir piedra en lavamanos. Modelos exclusivos con acabados rústicos, tallados con máquina de última generación CNC.',
 };

@@ -201,7 +201,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
-              Chat WhatsApp (+591 72876260)
+              Chat WhatsApp (+591 63747328)
             </a>
             <a
               href={`tel:${COMPANY_INFO.phoneDirect}`}

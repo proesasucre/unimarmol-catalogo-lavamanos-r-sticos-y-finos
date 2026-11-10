@@ -80,7 +80,7 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  WhatsApp: +591 72876260
+                  WhatsApp: +591 63747328
                 </a>
               </div>
               <p className="text-[11px] text-stone-500 pt-1">

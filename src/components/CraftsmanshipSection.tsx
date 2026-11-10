@@ -139,7 +139,7 @@ export const CraftsmanshipSection: React.FC = () => {
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all"
             >
-              <span>WhatsApp +591 72876260</span>
+              <span>WhatsApp +591 63747328</span>
             </a>
 
             <a
